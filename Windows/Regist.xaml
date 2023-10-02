@@ -1,0 +1,35 @@
+﻿<Window x:Class="TestApi.Windows.Regist"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TestApi.Windows"
+        mc:Ignorable="d"
+        Title="Regist" Height="450" Width="800">
+    <Grid Background="#F0DAAE">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition Height="300"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="1" Grid.Column="1">
+                <TextBlock Text="РЕГИСТРАЦИЯ" Foreground="#482E1D" FontSize="40" HorizontalAlignment="Center" FontFamily="Catamaran Black" />
+                <TextBlock Foreground="#482E1D" Text="Логин" FontSize="20"/>
+                <TextBox x:Name="login_box" CaretBrush="{x:Null}"/>
+                <TextBlock Text="ФИО" FontSize="20"/>
+                <TextBox x:Name="fio_box"/>
+                <TextBlock Foreground="#482E1D" Text="Пароль" FontSize="20"/>
+                <TextBox x:Name="password_box" CaretBrush="{x:Null}"/>
+                <TextBlock FontSize="20"/>
+                <Button Name="regist_btn" Click="regist_btn_Click" Content="ЗАРЕГИСТРИРОВАТЬСЯ" Width="226" Background="#A3966A" BorderBrush="{x:Null}" Height="45" FontFamily="Arial Black" />
+                <Button x:Name="log_in_btn" Click="log_in_btn_Click" Content="Войти" Background="{x:Null}" BorderBrush="{x:Null}"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
