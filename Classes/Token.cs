@@ -8,7 +8,7 @@ namespace TestApi.Classes
 {
     public class Token
     {
-        public string Id { get; set; }
+        public int Id { get; set; } = 1;
         public string token { get; set; }
     }
 }

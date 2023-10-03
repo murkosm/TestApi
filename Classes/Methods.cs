@@ -13,12 +13,12 @@ namespace TestApi.Classes
 
     public class Methods
     {
-        public const string BaseAuthUrl = "https://localhost:7213/Auth";
-        public const string BaseWeatherUrl = "https://localhost:7213/Weather";
+        public const string BaseAuthUrl = "https://localhost:7213/Auth/";
+        public const string BaseWeatherUrl = "https://localhost:7213/Weather/";
         public const string AuthRegister = "CreateAccount";
         public const string AuthToken = "GetToken";
         public const string WeatherCities = "GetCities";
-        public const string WeatherTemperature = "GetWeathersByCities";
+        public const string WeatherTemperature = "GetWeatherByCity";
 
         private static readonly ApplicationContext _db = new ApplicationContext();
 
@@ -36,31 +36,43 @@ namespace TestApi.Classes
         {
 
             var client = new RestClient(BaseAuthUrl);
-            var request = new RestRequest($"{AuthToken}?login{login}& password={password}");
+            var request = new RestRequest($"{AuthToken}?login{login}&password={password}");
             var response = client.Execute(request);
             string token = response.Content.Replace("\"", "");
-             _db.Tokens.RemoveRange(_db.Tokens);
-            _db.SaveChanges();
+            _db.Tokens.RemoveRange(_db.Tokens);
             Token _token = new Token()
             {
                 token = token
             };
-            
+            _db.Tokens.Add(_token);
+            _db.SaveChanges();
             return response.Content;
         }
 
         public static List<City> GetCities(string token)
         {
-            var client = new RestClient(BaseAuthUrl);
-            var request = new RestRequest(WeatherCities);
-            request.AddHeader("tokenFromQuery", token);
+            
+            var client = new RestClient(BaseWeatherUrl);
+            var request = new RestRequest($"{WeatherCities}?token={token}");
+            
             var response = client.Execute(request);
-            var result = new List<City>();
-            result = JsonConvert.DeserializeObject<List<City>>(response.Content);
-            return result;
+           
+            return JsonConvert.DeserializeObject<List<City>>(response.Content);
+            
 
         }
 
+        public static List<Temperature> GetWeathers(string token)
+        {
+            var client = new RestClient(BaseWeatherUrl);
+            var request = new RestRequest($"{WeatherTemperature}?token={token}");
+            var response = client.Execute(request);
+            return JsonConvert.DeserializeObject<List<Temperature>>(response.Content);
+        }
 
+        public static Token Get()
+        {
+            return _db.Tokens.FirstOrDefault();
+        }
     }
 }

@@ -7,18 +7,24 @@
         mc:Ignorable="d"
         Title="ListWindow" Height="450" Width="800">
     <Grid>
-        <ListView>
+        <ListView x:Name="lv_listview">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="{Binding Id}"/>
-                        <TextBlock Text="{Binding ProductName}"/>
-                        <TextBlock Text="{Binding Price}"/>
-                        <Button x:Name="edit_btn" Content="Изменить" Click="edit_btn_Click"/>
-                        
-                    </StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBlock Text="{Binding date}"/>
+                        <TextBlock Text="{Binding temperature}"/>
+                        <TextBlock Text="{Binding Description}"/>
+                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
+
         </ListView>
     </Grid>
 </Window>

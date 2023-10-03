@@ -13,7 +13,7 @@ namespace TestApi.DB
        
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("Data Source = test.db");
+            optionsBuilder.UseSqlite("Data Source = token.db");
         }
         public DbSet<Token> Tokens { get; set; }
     }

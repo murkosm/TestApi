@@ -28,12 +28,13 @@ namespace TestApi.Windows
         {
             User user = new User()
             {
-
+                id =  Guid.NewGuid(),
                 login = login_box.Text,
                 fio = fio_box.Text,
                 password = password_box.Text
 
             };
+
             string response = Methods.register(user);
             if (response == "\"Пользователь успешно зарегистрирован\"")
 
@@ -43,9 +44,9 @@ namespace TestApi.Windows
                     mainWindow.Show();
                     Close();
                 }
-                catch (Exception ex)
+                catch
                 {
-                    MessageBox.Show(ex.Message.ToString());
+                    MessageBox.Show(response);
                 }
             else
                 MessageBox.Show(response);

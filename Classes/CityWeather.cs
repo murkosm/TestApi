@@ -8,6 +8,7 @@ namespace TestApi.Classes
 {
     public class CityWeather
     {
-
+        public string City { get; set; }
+        public int? Temperature { get; set; }
     }
 }
